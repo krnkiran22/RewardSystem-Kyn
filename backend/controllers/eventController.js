@@ -49,26 +49,31 @@ const bookTicket = async (req, res) => {
 // confirmig presence 
 const confirmPresence = async (req, res) => {
   try {
-    const event = await Event.findById(req.params.eventId);
+    const { eventId } = req.params;
+    const { userId, isPresent } = req.body;
+
+    // Find the event by ID
+    const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    const { userId } = req.body;
+    // Find the booking by userId
     const booking = event.bookings.find(booking => booking.userId.toString() === userId);
-
     if (!booking) {
       return res.status(404).json({ message: 'Booking not found for this user' });
     }
 
-    booking.confirmed = true;
+    // Update the confirmed status of the booking
+    booking.confirmed = isPresent;
     await event.save();
 
-    res.status(200).json({ message: 'User presence confirmed successfully.' });
+    res.status(200).json({ message: `User's presence status updated successfully to ${isPresent ? 'Present' : 'Absent'}` });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 
 module.exports = { createEvent, getAllEvents, bookTicket, confirmPresence };

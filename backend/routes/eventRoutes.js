@@ -6,6 +6,6 @@ const router = express.Router();
 router.post('/create', createEvent);
 router.get('/get', getAllEvents);
 router.post('/:eventId/book', bookTicket);
-router.post('/:eventId/confirm', confirmPresence);
+router.patch('/:eventId/confirm-presence', confirmPresence);
 
 module.exports = router;

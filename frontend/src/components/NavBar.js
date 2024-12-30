@@ -65,6 +65,14 @@ const Navbar = () => {
           <MovieFilterIcon  />
           <span>Klips</span>
         </Link>
+        <Link
+          to="/eventcreation"
+          className={`flex items-center space-x-2 cursor-pointer ${selected === 'Event Creation' ? 'text-red-500' : 'hover:text-red-500'}`}
+          onClick={() => setSelected('Event Creation')}
+        >
+          <MovieFilterIcon  />
+          <span>Event Creation</span>
+        </Link>
       </div>
 
       {/* Right Section */}

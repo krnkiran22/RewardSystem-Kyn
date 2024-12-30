@@ -2,8 +2,15 @@ const Event = require('../models/Event');
 
 const createEvent = async (req, res) => {
   try {
-    const { title, description, date, venue, price, availableTickets, createdBy } = req.body;
-    const newEvent = new Event({ title, description, date, venue, price, availableTickets, createdBy });
+    const { title, description, date, venue, price, availableTickets } = req.body;
+    const newEvent = new Event({
+      title,
+      description,
+      date,
+      venue,
+      price,
+      availableTickets,
+    });
     await newEvent.save();
     res.status(201).json(newEvent);
   } catch (error) {

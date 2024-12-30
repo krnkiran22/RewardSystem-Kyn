@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const eventSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
@@ -7,6 +8,8 @@ const eventSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   availableTickets: { type: Number, required: true },
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  image: { type: String, required: false }, // Field to store the image URL
 });
+
 module.exports = mongoose.model('Event', eventSchema);

@@ -5,8 +5,9 @@ import Home from './pages/Home';
 import Live from './pages/Live';
 import Videos from './pages/Videos';
 import Klips from './pages/Klips';
-
+import "./styles/App.css"
 const App = () => (
+  <div className='App'>
   <Router>
     <Navbar />
 
@@ -17,6 +18,7 @@ const App = () => (
       <Route path="/klips" element={<Klips />} />
     </Routes>
   </Router>
+  </div>
 );
 
 export default App;

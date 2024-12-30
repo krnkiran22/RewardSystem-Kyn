@@ -8,15 +8,7 @@ const eventSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   availableTickets: { type: Number, required: true },
   createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  createdAt: { type: Date, default: Date.now },
-  bookings: [
-    {
-      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      ticketCount: { type: Number, required: true },
-      bookedAt: { type: Date, default: Date.now },
-      confirmed: { type: Boolean, default: false }  // Track presence confirmation
-    }
-  ]
+  createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -46,7 +46,7 @@ const bookTicket = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
+// confirmig presence 
 const confirmPresence = async (req, res) => {
   try {
     const event = await Event.findById(req.params.eventId);

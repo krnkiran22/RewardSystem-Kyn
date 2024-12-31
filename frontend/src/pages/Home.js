@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 
+
 const TOP_MOVIES = [
   {
     id: 1,

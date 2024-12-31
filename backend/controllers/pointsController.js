@@ -20,23 +20,23 @@ const generatePoints = async (req, res) => {
     switch (action) {
       case 'attendance':
         if (!event) return res.status(400).json({ message: 'Event ID is required for attendance points' });
-        points = calculatePoints(event.price, 15); // 15% of ticket price
+        points = calculatePoints(event.price, 15); 
         break;
       case 'referral':
         if (!event) return res.status(400).json({ message: 'Event ID is required for referral points' });
-        points = calculatePoints(event.price, 10); // 10% of ticket price
+        points = calculatePoints(event.price, 10); 
         break;
       case 'dailyLogin':
-        points = 1; // 1 point per login
+        points = 1; 
         break;
       case 'reportContent':
-        points = 5; // 5 points for reporting confirmed content
+        points = 5; 
         break;
       case 'shareEvent':
-        points = 3; // Points for sharing events
+        points = 3; 
         break;
       case 'completeSurvey':
-        points = 4; // Points for completing surveys
+        points = 4; 
         break;
       default:
         return res.status(400).json({ message: 'Invalid action type' });

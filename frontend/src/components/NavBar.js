@@ -13,17 +13,70 @@ import AddIcon from '@mui/icons-material/Add'; // Plus icon
 import Avatar from '@mui/joy/Avatar';
 
 const Navbar = () => {
-  // State to track the selected icon
   const [selected, setSelected] = useState('home');
-  // State to manage the avatar dropdown visibility
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
 
-  // Toggles the avatar dropdown
   const toggleAvatarDropdown = () => {
     setIsAvatarDropdownOpen((prev) => !prev);
   };
 
   return (
+    <>
+    <style>
+        {`
+        button {
+          outline: none;
+          cursor: pointer;
+          border: none;
+          padding: 0.9rem 2rem;
+          margin: 0;
+          font-family: inherit;
+          font-size: inherit;
+          position: relative;
+          display: inline-block;
+          letter-spacing: 0.05rem;
+          font-weight: 700;
+          font-size: 17px;
+          border-radius: 500px;
+          overflow: hidden;
+          background: #ed3544;
+          color: ghostwhite;
+        }
+
+        button span {
+          position: relative;
+          z-index: 10;
+          transition: color 0.4s;
+        }
+
+        button:hover span {
+          color: black;
+        }
+
+        button::before,
+        button::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        }
+
+        button::before {
+          content: "";
+          background: #000;
+          width: 120%;
+          left: -10%;
+          transform: skew(30deg);
+          transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+        }
+
+        button:hover::before {
+          transform: translate3d(100%, 0, 0);
+        }
+        `}
+  </style>
     <nav className="mx-auto max-w-7xl flex items-center justify-between h-full px-6 py-2 bg-white">
       {/* Left Section */}
       <div className="flex items-center space-x-4">
@@ -69,26 +122,20 @@ const Navbar = () => {
           className={`flex items-center space-x-2 cursor-pointer ${selected === 'klips' ? 'text-red-500' : 'hover:text-red-500'}`}
           onClick={() => setSelected('klips')}
         >
-          <MovieFilterIcon  />
+          <MovieFilterIcon />
           <span>Klips</span>
         </Link>
-        <Link
-          to="/eventcreation"
-          className={`flex items-center space-x-2 cursor-pointer ${selected === 'Event Creation' ? 'text-red-500' : 'hover:text-red-500'}`}
-          onClick={() => setSelected('Event Creation')}
-        >
-          <MovieFilterIcon  />
-          <span>Event Creation</span>
-        </Link>
+        
       </div>
 
       {/* Right Section */}
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
-          <button className="bg-white text-black border-black border px-5 py-2 rounded-full hover:bg-gray-200 flex items-center text-lg">
-            <AddIcon className="mr-2  text-xl" /> {/* Plus icon inside the Create button */}
-            Create
-          </button>
+          <Link to="/eventcreation">
+            <button >
+              <span>Create Event</span>
+            </button>
+          </Link>
         </div>
         <NotificationsNoneIcon className="cursor-pointer text-red-500 hover:text-red-200 text-3xl" /> {/* Big hollow bell icon */}
         
@@ -98,7 +145,6 @@ const Navbar = () => {
             className="cursor-pointer text-2xl"
             onClick={toggleAvatarDropdown}
           />
-          {/* Dropdown Menu */}
           {isAvatarDropdownOpen && (
             <div className="absolute top-12 right-0 bg-white shadow-lg rounded-md w-40 py-2">
               <Link to="/login" className="block px-4 py-2 text-black hover:bg-gray-100">
@@ -112,6 +158,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </>
   );
 };
 

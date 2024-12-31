@@ -111,9 +111,16 @@ const Form = () => {
           />
         </div>
        
-        <button type="submit" style={styles.button}>
-          Create Event
+        <button
+             type="submit"
+             style={{
+              ...styles.button,
+              ':hover': styles.buttonHover, // Apply hover styles
+               }}
+              >
+            Create Event
         </button>
+
       </form>
     </div>
   );
@@ -170,7 +177,7 @@ const styles = {
       padding: '10px 20px',
       borderRadius: '5px',
       border: 'none',
-      backgroundColor: '#007BFF',
+      backgroundColor: '#ed3544',
       color: 'white',
       fontSize: '16px',
       cursor: 'pointer',

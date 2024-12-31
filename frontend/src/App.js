@@ -10,13 +10,9 @@ import SignIn from './pages/SignIn';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard'; 
 import RedemptionPage from './pages/RedemptionPage';
-
-
-
 import GetAllEvents from './pages/GetAllEvents';
 
 const App = () => (
-  <div className='App'>
     <Router>
       <Navbar />
       <Routes>
@@ -33,7 +29,7 @@ const App = () => (
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
-  </div>
+
 );
 
 export default App;

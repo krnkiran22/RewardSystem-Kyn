@@ -26,8 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <nav className="mx-auto max-w-7xl flex items-center justify-between h-full px-6 py-2 bg-white">
+      <nav className="mx-auto max-w  flex items-center justify-between h-full px-6 py-2 bg-white">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
           <img className="w-11 h-11" src={Logo} alt="KYN Logo" />
@@ -117,7 +116,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </>
   );
 };
 

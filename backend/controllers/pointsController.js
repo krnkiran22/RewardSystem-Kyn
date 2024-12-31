@@ -1,48 +1,44 @@
 const Points = require('../models/Points');
 const Event = require('../models/Event');
 
-// Calculate points based on ticket price or other logic
 const calculatePoints = (ticketPrice, percentage) => Math.round((ticketPrice * percentage) / 100);
 
 const generatePoints = async (req, res) => {
   try {
-    const { userId, eventId, action } = req.body; // Action defines the type of reward
+    const { userId, eventId, action } = req.body;
     let points = 0;
-
-    // Find the event if applicable
     let event = null;
+
     if (eventId) {
       event = await Event.findById(eventId);
       if (!event) return res.status(404).json({ message: 'Event not found' });
     }
 
-    // Define point logic based on action
     switch (action) {
       case 'attendance':
         if (!event) return res.status(400).json({ message: 'Event ID is required for attendance points' });
-        points = calculatePoints(event.price, 15); 
+        points = calculatePoints(event.price, 15);
         break;
       case 'referral':
         if (!event) return res.status(400).json({ message: 'Event ID is required for referral points' });
-        points = calculatePoints(event.price, 10); 
+        points = calculatePoints(event.price, 10);
         break;
       case 'dailyLogin':
-        points = 1; 
+        points = 1;
         break;
       case 'reportContent':
-        points = 5; 
+        points = 5;
         break;
       case 'shareEvent':
-        points = 3; 
+        points = 3;
         break;
       case 'completeSurvey':
-        points = 4; 
+        points = 4;
         break;
       default:
         return res.status(400).json({ message: 'Invalid action type' });
     }
 
-    // Save points to the database
     const newPoints = new Points({
       userId,
       eventId,
@@ -58,7 +54,6 @@ const generatePoints = async (req, res) => {
   }
 };
 
-
 const getUserPoints = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -71,13 +66,12 @@ const getUserPoints = async (req, res) => {
     const totalPoints = userPoints.reduce((sum, pointRecord) => sum + pointRecord.points, 0);
     res.status(200).json({
       userId,
-      totalPoints, 
-      pointsDetails: userPoints 
+      totalPoints,
+      pointsDetails: userPoints
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-module.exports = { generatePoints , getUserPoints };
+module.exports = { generatePoints, getUserPoints };

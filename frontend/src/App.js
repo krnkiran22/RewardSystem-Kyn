@@ -9,6 +9,7 @@ import EventCreation from './pages/EventCreation';
 import SignIn from './pages/SignIn';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard'; 
+import RedemptionPage from './pages/RedemptionPage';
 
 
 
@@ -27,7 +28,7 @@ const App = () => (
         <Route path="/klips" element={<Klips />} />
         <Route path="/eventcreation" element={<EventCreation />} />
         <Route path="/getallevents" element={<GetAllEvents />} />
-        
+        <Route path="/reedem" element={<RedemptionPage />} />
         
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

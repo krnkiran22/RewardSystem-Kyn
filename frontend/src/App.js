@@ -7,6 +7,8 @@ import Videos from './pages/Videos';
 import Klips from './pages/Klips';
 import "./styles/App.css"
 import EventCreation from './pages/EventCreation';
+import SignIn from './pages/SignIn';
+import Login from './pages/Login';
 
 
 const App = () => (
@@ -15,7 +17,9 @@ const App = () => (
     <Navbar />
 
     <Routes>
+      <Route path="/signup" element={<SignIn/>}/>
       <Route path="/home" element={<Home />} />
+      <Route path='/login' element={<Login/>}/>
       <Route path="/live" element={<Live />} />
       <Route path="/videos" element={<Videos />} />
       <Route path="/klips" element={<Klips />} />

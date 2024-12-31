@@ -20,6 +20,11 @@ const Home = () => {
       <div style={{ flex: 2, marginRight: "20px" }}>
         <AdBanner />
         <PostCard />
+
+
+
+
+        
       </div>
 
       {/* Right Sidebar */}

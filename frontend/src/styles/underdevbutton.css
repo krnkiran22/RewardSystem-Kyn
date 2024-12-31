@@ -1,5 +1,6 @@
-/* 
+
 .loader {
+    width: 200px; /* Adjusted for better visibility */
     height: px;
     position: relative;
     border: none;
@@ -18,7 +19,7 @@
     margin: 0;
     color: #ed3544;
     animation: text_713 3.5s ease both infinite;
-    font-size: 1rem; 
+    font-size: 1rem; /* Slightly larger for better readability */
     letter-spacing: 1px;
     text-transform: uppercase;
   }
@@ -45,7 +46,7 @@
     animation: loading2_713 3.5s ease both infinite;
   }
   
-
+  /* Keyframes for animations */
   @keyframes text_713 {
     0% {
       letter-spacing: 1px;
@@ -114,4 +115,4 @@
       width: 16px;
     }
   }
-   */
+  

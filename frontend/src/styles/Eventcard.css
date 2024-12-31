@@ -1,66 +1,84 @@
-/* .events-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .event-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  
-  .event-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .event-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #333;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  
-  .event-description {
-    font-size: 1em;
-    color: #555;
-    margin-bottom: 15px;
-    flex-grow: 1;
-  }
-  
-  .event-details {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-  }
-  
-  .event-ticket-price,
-  .event-available-tickets {
-    font-weight: bold;
-  }
-  
-  .event-date,
-  .event-location {
-    font-size: 0.9em;
-    color: #777;
-  }
-  
-  .event-date {
-    margin-top: 10px;
-  }
-  
-  .event-location {
-    margin-top: 5px;
-  }
-  
-  
-   */
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.event-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.event-description {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Allows description to take up available space */
+}
+
+.event-details {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+}
+
+.event-ticket-price,
+.event-available-tickets {
+  font-weight: bold;
+}
+
+.event-date,
+.event-location {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.event-date {
+  margin-top: 10px;
+}
+
+.event-location {
+  margin-top: 5px;
+}
+
+.book-button {
+  background-color: #4CAF50; /* Green background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: auto; /* Push the button to the bottom */
+}
+
+.book-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+.book-button:focus {
+  outline: none;
+}

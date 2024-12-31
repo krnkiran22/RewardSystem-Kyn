@@ -71,6 +71,7 @@ const Dashboard = () => {
         <div className="nav-links">
           <button onClick={() => navigate("/profile")}>Profile</button>
           <button onClick={() => navigate("/settings")}>Settings</button>
+          <button onClick={() => navigate("/reedem")}>Reedem Points</button>
           <button
             onClick={() => {
               localStorage.clear();

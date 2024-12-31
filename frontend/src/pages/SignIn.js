@@ -44,7 +44,7 @@ const SignIn = () => {
         alert("User registered successfully!");
         // Store the user ID in localStorage
         localStorage.setItem("userId", result._id); // Correctly save the user ID
-        localStorage.setItem("token", result.token); // You should also save the token if it's returned
+        
       } else {
         setError(result.message || result.error || "Something went wrong");
       }

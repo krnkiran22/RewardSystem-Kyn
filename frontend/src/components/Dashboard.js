@@ -8,16 +8,40 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    } else {
-      const savedUser = JSON.parse(localStorage.getItem("user"));
-      if (savedUser) {
-        setUser(savedUser);
+    const fetchUserProfile = async () => {
+      const token = localStorage.getItem("token"); // Get token from localStorage
+      const userId = localStorage.getItem("userId"); // Get userId from localStorage
+
+      console.log("Token:", token);
+      console.log("UserId:", userId);
+
+      if (!token || !userId) {
+        navigate("/login");
+        return;
       }
-      setLoading(false);
-    }
+
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Send token for authentication
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user profile");
+        }
+
+        const userData = await response.json();
+        setUser(userData);  // Set the user data correctly
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        navigate("/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserProfile();
   }, [navigate]);
 
   if (loading) return <div className="loading-screen">Loading...</div>;
@@ -30,10 +54,14 @@ const Dashboard = () => {
         <div className="nav-links">
           <button onClick={() => navigate("/profile")}>Profile</button>
           <button onClick={() => navigate("/settings")}>Settings</button>
-          <button onClick={() => {
-            localStorage.clear();
-            navigate("/login");
-          }}>Logout</button>
+          <button
+            onClick={() => {
+              localStorage.clear();
+              navigate("/login");
+            }}
+          >
+            Logout
+          </button>
         </div>
       </nav>
       <div className="dashboard-content">

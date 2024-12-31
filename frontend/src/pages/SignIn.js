@@ -7,7 +7,7 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); // To display error messages
 
   // Validates the phone number input
   const handleInputChange = (e) => {
@@ -42,7 +42,9 @@ const SignIn = () => {
   
       if (response.ok) {
         alert("User registered successfully!");
-        
+        // Store the user ID in localStorage
+        localStorage.setItem("userId", result._id); // Correctly save the user ID
+        localStorage.setItem("token", result.token); // You should also save the token if it's returned
       } else {
         setError(result.message || result.error || "Something went wrong");
       }
@@ -57,9 +59,7 @@ const SignIn = () => {
       <div className="signin-bg">
         <div><br></br><br></br><br></br><br></br><br></br></div>
         
-
-        
-          <form onSubmit={handleSignup}>
+        <form onSubmit={handleSignup}>
             {/* Full Name */}
             <input
               className="input-field"
@@ -151,7 +151,6 @@ const SignIn = () => {
               <use href="/sprite/sprite.svg#next" />
             </svg>
           </div>
-        
       </div>
     </div>
   );

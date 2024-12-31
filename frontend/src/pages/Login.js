@@ -6,39 +6,43 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+ 
   const navigate = useNavigate(); 
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      setError("Please enter both email and password.");
-      return;
-    }
-
-    const userData = { email, password };
-
     try {
       const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({
+          email: email,  // Your form input value for email
+          password: password,  // Your form input value for password
+        }),
       });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        alert("Login successful!");
-        localStorage.setItem("token", result.token);
-        navigate("/dashboard"); 
-      } else {
-        setError(result.error || "Invalid credentials.");
+  
+      if (!response.ok) {
+        throw new Error("Login failed");
       }
+  
+      const data = await response.json();
+      const { token, user } = data; // Assuming the response contains 'token' and 'user'
+  
+      // Ensure token and user are being stored correctly
+      localStorage.setItem("token", token);
+      
+  
+      console.log("Login successful, redirecting to dashboard...");
+      navigate("/dashboard");  // Redirect to dashboard after login
+  
     } catch (error) {
-      setError("Server error. Please try again later.");
+      console.error("Login error:", error);
     }
   };
-
+  
+  
+  
   return (
     <div className="login-container">
       <div className="login-bg">

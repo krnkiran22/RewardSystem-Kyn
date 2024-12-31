@@ -7,7 +7,7 @@
     background-color: #f7fafc;
   }
   
-  /* Background section */
+  
   .login-bg {
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@
     border-radius: 8px;
   }
   
-  /* Logo text */
+  
   .logo-text {
     text-align: center;
     font-size: 24px;
@@ -25,7 +25,7 @@
     margin-bottom: 20px;
   }
   
-  /* Input fields */
+  
   .input-field {
     width: 100%;
     padding: 10px;
@@ -35,7 +35,7 @@
     font-size: 14px;
   }
   
-  /* Button */
+  
   .button-continue {
     width: 100%;
     padding: 10px;
@@ -57,7 +57,7 @@
     cursor: not-allowed;
   }
   
-  /* Divider */
+  
   .login-divider {
     text-align: center;
     margin-top: 20px;
@@ -68,7 +68,7 @@
     color: #555;
   }
   
-  /* Auth Options */
+  
   .auth-options-container {
     display: flex;
     justify-content: center;
@@ -83,7 +83,7 @@
     background-color: #ccc;
   }
   
-  /* Signup link */
+  
   .signup-link {
     color: #f56a6a;
     cursor: pointer;
@@ -96,7 +96,7 @@
     margin-top: 20px;
   }
   
-  /* Skip for now */
+  
   .skip-for-now {
     text-align: center;
     margin-top: 15px;

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "../styles/Login.css"; // Ensure you have the correct styling
+import { useNavigate } from "react-router-dom"; 
+import "../styles/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); 
 
   const handleLogin = async () => {
-    // You can validate user data here and make a backend request
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
@@ -28,7 +29,8 @@ const Login = () => {
 
       if (response.ok) {
         alert("Login successful!");
-        // Redirect to homepage or dashboard after successful login
+        localStorage.setItem("token", result.token);
+        navigate("/dashboard"); 
       } else {
         setError(result.error || "Invalid credentials.");
       }
@@ -41,7 +43,6 @@ const Login = () => {
     <div className="login-container">
       <div className="login-bg">
         <p className="logo-text">Express, Engage, Empower: Your Local World</p>
-
         <div className="content-box">
           <input
             className="input-field"

@@ -11,7 +11,8 @@ import Login from './pages/Login';
 import Dashboard from './components/Dashboard'; 
 import PrivateRoute from './components/PrivateRoute'; 
 
-import "./styles/App.css";
+
+import GetAllEvents from './pages/GetAllEvents';
 
 const App = () => (
   <div className='App'>
@@ -25,6 +26,7 @@ const App = () => (
         <Route path="/videos" element={<Videos />} />
         <Route path="/klips" element={<Klips />} />
         <Route path="/eventcreation" element={<EventCreation />} />
+        <Route path="/getallevents" element={<GetAllEvents />} />
         
         
         <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />

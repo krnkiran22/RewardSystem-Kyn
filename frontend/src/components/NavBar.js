@@ -125,6 +125,14 @@ const Navbar = () => {
           <MovieFilterIcon />
           <span>Klips</span>
         </Link>
+        <Link
+          to="/getallevents"
+          className={`flex items-center space-x-2 cursor-pointer ${selected === 'Events' ? 'text-red-500' : 'hover:text-red-500'}`}
+          onClick={() => setSelected('Events')}
+        >
+          <MovieFilterIcon />
+          <span>Events</span>
+        </Link>
         
       </div>
 
@@ -132,8 +140,8 @@ const Navbar = () => {
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <Link to="/eventcreation">
-            <button >
-              <span>Create Event</span>
+            <button className='use' >
+              <span className='usespan'>Create Event</span>
             </button>
           </Link>
         </div>

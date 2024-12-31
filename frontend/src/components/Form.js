@@ -110,14 +110,14 @@ const Form = () => {
             required
           />
         </div>
-       
         <button
              type="submit"
              style={{
-              ...styles.button,
-              ':hover': styles.buttonHover, // Apply hover styles
+              ...styles.usebutton,
+               
                }}
               >
+        
             Create Event
         </button>
 
@@ -130,65 +130,65 @@ const Form = () => {
 
 // Styling for the form
 const styles = {
-    container: {
-      maxWidth: '600px',
-      margin: '20px auto',
-      padding: '20px',
-      borderRadius: '10px',
-      backgroundColor: '#f9f9f9',
-      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-      fontFamily: 'Arial, sans-serif',
-    },
-    heading: {
-      textAlign: 'center',
-      color: '#333',
-      marginBottom: '20px',
-    },
-    form: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '15px',
-    },
-    inputGroup: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    label: {
-      marginBottom: '5px',
-      fontWeight: 'bold',
-      color: '#555',
-    },
-    input: {
-      padding: '10px',
-      borderRadius: '5px',
-      border: '1px solid #ccc',
-      outline: 'none',
-      fontSize: '14px',
-    },
-    textarea: {
-      padding: '10px',
-      borderRadius: '5px',
-      border: '1px solid #ccc',
-      outline: 'none',
-      fontSize: '14px',
-      minHeight: '80px',
-    },
-    button: {
-      padding: '10px 20px',
-      borderRadius: '5px',
-      border: 'none',
-      backgroundColor: '#ed3544',
-      color: 'white',
-      fontSize: '16px',
-      cursor: 'pointer',
-      alignSelf: 'center',
-      marginTop: '10px',
-    },
-    message: {
-      textAlign: 'center',
-      marginBottom: '20px',
-      fontSize: '14px',
-    },
+    // container: {
+    //   maxWidth: '600px',
+    //   margin: '20px auto',
+    //   padding: '20px',
+    //   borderRadius: '10px',
+    //   backgroundColor: '#f9f9f9',
+    //   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    //   fontFamily: 'Arial, sans-serif',
+    // },
+    // heading: {
+    //   textAlign: 'center',
+    //   color: '#333',
+    //   marginBottom: '20px',
+    // },
+    // form: {
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   gap: '15px',
+    // },
+    // inputGroup: {
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    // },
+    // label: {
+    //   marginBottom: '5px',
+    //   fontWeight: 'bold',
+    //   color: '#555',
+    // },
+    // input: {
+    //   padding: '10px',
+    //   borderRadius: '5px',
+    //   border: '1px solid #ccc',
+    //   outline: 'none',
+    //   fontSize: '14px',
+    // },
+    // textarea: {
+    //   padding: '10px',
+    //   borderRadius: '5px',
+    //   border: '1px solid #ccc',
+    //   outline: 'none',
+    //   fontSize: '14px',
+    //   minHeight: '80px',
+    // },
+    // usebutton: {
+    //   padding: '10px 20px',
+    //   borderRadius: '5px',
+    //   border: 'none',
+    //   backgroundColor: '#ed3544',
+    //   color: 'white',
+    //   fontSize: '16px',
+    //   cursor: 'pointer',
+    //   alignSelf: 'center',
+    //   marginTop: '10px',
+    // },
+    // message: {
+    //   textAlign: 'center',
+    //   marginBottom: '20px',
+    //   fontSize: '14px',
+    // },
   };
   
 export default Form;

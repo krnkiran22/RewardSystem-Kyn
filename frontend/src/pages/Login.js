@@ -17,29 +17,37 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: email,  // Your form input value for email
-          password: password,  // Your form input value for password
+          email, // Email from state
+          password, // Password from state
         }),
       });
   
+      const data = await response.json(); // Parse the response
+      console.log("Response Data:", data); // Debug response data
+  
       if (!response.ok) {
-        throw new Error("Login failed");
+        setError(data.message || "Login failed. Please try again.");
+        return;
       }
   
-      const data = await response.json();
-      const { token, user } = data; // Assuming the response contains 'token' and 'user'
+      const { token, user } = data;
   
-      // Ensure token and user are being stored correctly
+      if (!user || !user._id) {
+        throw new Error("Invalid user data returned from server");
+      }
+  
+      // Save the token and userId in localStorage
       localStorage.setItem("token", token);
-      
+      localStorage.setItem("userId", user._id);
   
       console.log("Login successful, redirecting to dashboard...");
-      navigate("/dashboard");  // Redirect to dashboard after login
-  
+      navigate("/dashboard"); // Redirect to dashboard
     } catch (error) {
       console.error("Login error:", error);
+      setError("An unexpected error occurred. Please try again later.");
     }
   };
+  
   
   
   

@@ -9,7 +9,7 @@ import EventCreation from './pages/EventCreation';
 import SignIn from './pages/SignIn';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard'; 
-import PrivateRoute from './components/PrivateRoute'; 
+
 
 
 import GetAllEvents from './pages/GetAllEvents';
@@ -29,7 +29,7 @@ const App = () => (
         <Route path="/getallevents" element={<GetAllEvents />} />
         
         
-        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   </div>

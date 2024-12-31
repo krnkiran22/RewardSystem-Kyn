@@ -5,15 +5,39 @@ import "../styles/Dashboard.css";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(""); // For displaying error messages
   const navigate = useNavigate();
 
+  // Function to fetch the user profile
+  const fetchUserProfile = async (userId, token) => {
+    try {
+      console.log("Fetching profile with UserID:", userId, "Token:", token);
+  
+      const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+  
+      if (!response.ok) {
+        console.error("Response Status:", response.status);
+        throw new Error("Failed to fetch user profile");
+      }
+  
+      const userData = await response.json();
+      return userData; 
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      throw error;
+    }
+  };
+  
+
+  // UseEffect to load user data on component mount
   useEffect(() => {
-    const fetchUserProfile = async () => {
+    const loadUserData = async () => {
       const token = localStorage.getItem("token"); // Get token from localStorage
       const userId = localStorage.getItem("userId"); // Get userId from localStorage
-
-      console.log("Token:", token);
-      console.log("UserId:", userId);
 
       if (!token || !userId) {
         navigate("/login");
@@ -21,30 +45,22 @@ const Dashboard = () => {
       }
 
       try {
-        const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send token for authentication
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch user profile");
-        }
-
-        const userData = await response.json();
-        setUser(userData);  // Set the user data correctly
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-        navigate("/login");
+        const userData = await fetchUserProfile(userId, token);
+        setUser(userData); // Set the user data
+      } catch {
+        setError("Unable to load user data. Please login again.");
+        localStorage.clear(); // Clear localStorage on error
+        navigate("/login"); // Redirect to login page
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop the loading spinner
       }
     };
 
-    fetchUserProfile();
+    loadUserData();
   }, [navigate]);
 
   if (loading) return <div className="loading-screen">Loading...</div>;
+  if (error) return <div className="error-message">{error}</div>;
   if (!user) return <div className="error-message">User data is not available.</div>;
 
   return (

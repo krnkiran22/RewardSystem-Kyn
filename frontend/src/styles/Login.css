@@ -1,0 +1,115 @@
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f7fafc;
+  }
+  
+  
+  .login-bg {
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 8px;
+  }
+  
+  
+  .logo-text {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  
+  .button-continue {
+    width: 100%;
+    padding: 10px;
+    background-color: #f56a6a;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-continue:hover {
+    background-color: #f14a4a;
+  }
+  
+  .button-continue:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+  
+  
+  .login-divider {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .or-text {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  
+  .auth-options-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .button-google, .button-apple {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+  }
+  
+  
+  .signup-link {
+    color: #f56a6a;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .better-exp {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  
+  .skip-for-now {
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+  }
+  
+  .skip-text-login {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .skip-for-now svg {
+    margin-left: 5px;
+    vertical-align: middle;
+  }
+  

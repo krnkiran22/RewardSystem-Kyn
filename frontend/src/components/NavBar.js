@@ -15,6 +15,13 @@ import Avatar from '@mui/joy/Avatar';
 const Navbar = () => {
   // State to track the selected icon
   const [selected, setSelected] = useState('home');
+  // State to manage the avatar dropdown visibility
+  const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
+
+  // Toggles the avatar dropdown
+  const toggleAvatarDropdown = () => {
+    setIsAvatarDropdownOpen((prev) => !prev);
+  };
 
   return (
     <nav className="mx-auto max-w-7xl flex items-center justify-between h-full px-6 py-2 bg-white">
@@ -84,9 +91,26 @@ const Navbar = () => {
           </button>
         </div>
         <NotificationsNoneIcon className="cursor-pointer text-red-500 hover:text-red-200 text-3xl" /> {/* Big hollow bell icon */}
-        <Avatar className="cursor-pointer text-2xl" /> {/* Avatar icon */}
+        
+        {/* Avatar icon with dropdown */}
+        <div className="relative">
+          <Avatar
+            className="cursor-pointer text-2xl"
+            onClick={toggleAvatarDropdown}
+          />
+          {/* Dropdown Menu */}
+          {isAvatarDropdownOpen && (
+            <div className="absolute top-12 right-0 bg-white shadow-lg rounded-md w-40 py-2">
+              <Link to="/login" className="block px-4 py-2 text-black hover:bg-gray-100">
+                Login
+              </Link>
+              <Link to="/signup" className="block px-4 py-2 text-black hover:bg-gray-100">
+                Signup
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
-      
     </nav>
   );
 };

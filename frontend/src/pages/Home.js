@@ -2,20 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Loader from '../components/Loader'; // Import the truck loader component
-import "../styles/underdevbutton.css"
+
+import FollowList from "../components/FollowList";
+import AdBanner from "../components/AdBanner";
+import PostCard from "../components/PostCard";
+import ExclusiveList from "../components/ExclusiveList";
 const Home = () => {
   return (
-    <div className="w-full h-full flex flex-col gap-10 items-center py-28 justify-center text-lg font-bold px-20">
-      <Loader />
-         <div className="loader">
-          <span className='loader-text'>Development..</span>
-          <span class="load"></span>
-        </div>
-      
-      
-      <label className="text-body text-center text-primary-black w-[374px]" htmlFor="">
-        No Events! Your neighbourhood is unusually quiet but stay tuned, the excitement is brewing!
-      </label>
+    <div>
+        <div style={{ display: "flex", flexDirection: "row", padding: "20px" }}>
+      {/* Left Sidebar */}
+      <div style={{ flex: 1, marginRight: "20px" }}>
+        <FollowList />
+      </div>
+
+      {/* Main Content */}
+      <div style={{ flex: 2, marginRight: "20px" }}>
+        <AdBanner />
+        <PostCard />
+      </div>
+
+      {/* Right Sidebar */}
+      <div style={{ flex: 1 }}>
+        <ExclusiveList />
+      </div>
+    </div>
     </div>
   );
 };

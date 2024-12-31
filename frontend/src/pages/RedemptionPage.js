@@ -16,13 +16,40 @@ const RedemptionPage = () => {
   // Fetch user points from the API
   const fetchUserPoints = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/points/user/12345');
-      const totalPoints = response.data.reduce((sum, point) => sum + point.points, 0);
-      setUserPoints(totalPoints);
+      const userId = localStorage.getItem('userId');  // Retrieve userId from localStorage
+      const token = localStorage.getItem('token');    // Retrieve token from localStorage
+  
+      if (!userId || !token) {
+        alert('User not logged in');
+        return;
+      }
+  
+      console.log("Fetching profile with UserID:", userId, "Token:", token);
+  
+      const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+  
+      const data = await response.json();
+  
+      // Check if the response data is an array or object
+      if (Array.isArray(data)) {
+        const totalPoints = data.reduce((sum, point) => sum + point.points, 0);
+        setUserPoints(totalPoints);
+      } else if (data && data.points) {
+        // If the response is an object with points directly
+        setUserPoints(data.points);
+      } else {
+        throw new Error('Unexpected response format');
+      }
     } catch (error) {
       console.error('Error fetching user points:', error);
+      alert('Error fetching points. Please try again later.');
     }
   };
+  
 
   // Fetch rewards from the API
   const fetchRewards = async () => {
@@ -31,6 +58,7 @@ const RedemptionPage = () => {
       setRewards(response.data);
     } catch (error) {
       console.error('Error fetching rewards:', error);
+      alert('Error fetching rewards. Please try again later.');
     }
   };
 
@@ -43,10 +71,19 @@ const RedemptionPage = () => {
   const handleRedeemReward = async () => {
     if (selectedReward && userPoints >= selectedReward.pointsRequired) {
       try {
+        const userId = localStorage.getItem('userId');  // Retrieve userId again for redemption
+        const token = localStorage.getItem('token');    // Retrieve token again for redemption
+
+        if (!userId || !token) {
+          alert('User not logged in');
+          return;
+        }
+
         const response = await axios.post('http://localhost:5000/api/rewards/redeem', {
-          userId: '12345',
+          userId: userId,  // Use actual userId here
           rewardId: selectedReward._id,
         });
+
         alert(response.data.message);
         fetchUserPoints();  // Update points after redemption
       } catch (error) {

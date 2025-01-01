@@ -84,11 +84,11 @@ const Navbar = () => {
           </Link>
           <Link
             to="/attendance"
-            className={`flex items-center space-x-2 cursor-pointer ${selected === 'Attendance' ? 'text-red-500' : 'hover:text-red-500'}`}
-            onClick={() => setSelected('Attendance')}
+            className={`flex items-center space-x-2 cursor-pointer ${selected === 'Attendence' ? 'text-red-500' : 'hover:text-red-500'}`}
+            onClick={() => setSelected('Attendence')}
           >
             <MovieFilterIcon />
-            <span>Attendance</span>
+            <span>Attendence</span>
           </Link>
         </div>
 

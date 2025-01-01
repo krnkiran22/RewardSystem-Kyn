@@ -1,95 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/AdminPanel.css';
 
-const AdminPanel = () => {
-  const [eventId, setEventId] = useState('');
-  const [attendees, setAttendees] = useState([]);
-  const [loading, setLoading] = useState(false);
+const Adminpanel = () => {
+  const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState({ bookings: [] });  // Default to an empty array
 
   useEffect(() => {
-    if (eventId) {
-      fetchAttendees();
-    }
-  }, [eventId]);
+    fetchEvents();
+  }, []);
 
-  const fetchAttendees = async () => {
-    setLoading(true);
+  const fetchEvents = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/events/attendees/${eventId}`
-      );
-      setAttendees(response.data);
+      const response = await axios.get('http://localhost:5000/api/events/get');
+      setEvents(response.data);
     } catch (error) {
-      console.error('Error fetching attendees:', error);
-      alert('Error fetching attendees. Please try again later.');
-    } finally {
-      setLoading(false);
+      console.error('Error fetching events:', error);
+      alert('Error fetching events. Please try again later.');
     }
   };
 
-  const handleConfirmAttendance = async (userId) => {
+  const handleEventSelect = async (eventId) => {
+    setSelectedEvent({ bookings: [] });  // Reset the bookings
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/points/generate`,
-        {
-          userId,
-          eventId,
-          action: 'attendance',
-        }
-      );
-      alert(response.data.message);
-      fetchAttendees(); // Refresh the list after confirming attendance
+      const response = await axios.get(`http://localhost:5000/api/events/${eventId}/getBookings`);
+      setSelectedEvent({ ...response.data, _id: eventId });  // Assuming response.data contains the bookings
     } catch (error) {
-      console.error('Error confirming attendance:', error);
-      alert('Error confirming attendance. Please try again later.');
+      console.error('Error fetching event bookings:', error);
+      alert('Error fetching bookings. Please try again later.');
+    }
+  };
+  
+
+  const handleConfirmPresence = async (userId, isPresent) => {
+    try {
+      await axios.patch(
+        `http://localhost:5000/api/events/${selectedEvent._id}/confirm-presence`,
+        { userId, isPresent }
+      );
+      alert('Presence confirmed');
+    } catch (error) {
+      console.error('Error confirming presence:', error);
+      alert('Error confirming presence. Please try again later.');
     }
   };
 
   return (
-    <div className="admin-panel-container">
-      <header className="admin-panel-header">
-        <h1>Admin Panel - Confirm User Attendance</h1>
-      </header>
-
-      <div className="event-selection">
-        <label htmlFor="eventId">Select Event:</label>
-        <input
-          type="text"
-          id="eventId"
-          value={eventId}
-          onChange={(e) => setEventId(e.target.value)}
-          placeholder="Enter event ID"
-        />
-        <button onClick={fetchAttendees} disabled={!eventId || loading}>
-          Load Attendees
-        </button>
+    <div>
+      <h1>Admin Panel - Event Attendance</h1>
+      <div>
+        <label>Select Event:</label>
+        <select onChange={(e) => handleEventSelect(e.target.value)}>
+          <option value="">Select Event</option>
+          {events.map((event) => (
+            <option key={event._id} value={event._id}>{event.title}</option>
+          ))}
+        </select>
       </div>
 
-      {loading ? (
-        <div>Loading attendees...</div>
-      ) : (
-        <div className="attendees-list">
-          <h2>Attendees</h2>
-          {attendees.length > 0 ? (
-            <ul>
-              {attendees.map((attendee) => (
-                <li key={attendee.userId}>
-                  <span>{attendee.userName}</span>
-                  <button onClick={() => handleConfirmAttendance(attendee.userId)}>
-                    Confirm Attendance
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No attendees found for this event.</p>
-          )}
+      {selectedEvent._id && (
+        <div>
+          <h2>Event Bookings for {selectedEvent.title}</h2>
+          <ul>
+            {selectedEvent.bookings?.map((booking) => (
+              <li key={booking.userId}>
+                <p>User: {booking.userId}</p>
+                <p>Tickets: {booking.ticketCount}</p>
+                <button onClick={() => handleConfirmPresence(booking.userId, true)}>Present</button>
+                <button onClick={() => handleConfirmPresence(booking.userId, false)}>Absent</button>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
   );
 };
 
-export default AdminPanel;
-    
+export default Adminpanel;

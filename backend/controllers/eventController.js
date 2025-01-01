@@ -1,5 +1,6 @@
 const Event = require('../models/Event');
 
+// Create a new event
 const createEvent = async (req, res) => {
   try {
     const { title, description, date, venue, price, availableTickets } = req.body;
@@ -18,6 +19,7 @@ const createEvent = async (req, res) => {
   }
 };
 
+// Get all events
 const getAllEvents = async (req, res) => {
   try {
     const events = await Event.find();
@@ -27,6 +29,7 @@ const getAllEvents = async (req, res) => {
   }
 };
 
+// Book tickets for an event
 const bookTicket = async (req, res) => {
   try {
     const event = await Event.findById(req.params.eventId);
@@ -53,7 +56,8 @@ const bookTicket = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-// confirmig presence 
+
+// Confirm the presence of a user at the event
 const confirmPresence = async (req, res) => {
   try {
     const { eventId } = req.params;
@@ -81,6 +85,21 @@ const confirmPresence = async (req, res) => {
   }
 };
 
+// Get all bookings for a specific event
+const getEventBookings = async (req, res) => {
+  try {
+    const { eventId } = req.params;  // Extract the eventId from URL params
+    const event = await Event.findById(eventId);
 
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
 
-module.exports = { createEvent, getAllEvents, bookTicket, confirmPresence };
+    // Send the event bookings as the response
+    res.status(200).json(event.bookings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createEvent, getAllEvents, bookTicket, confirmPresence, getEventBookings };

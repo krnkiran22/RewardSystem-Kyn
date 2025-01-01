@@ -3,7 +3,10 @@ const { generatePoints, getUserPoints } = require('../controllers/pointsControll
 
 const router = express.Router();
 
+// Route to generate points (POST request)
 router.post('/generate', generatePoints);
-router.get('/user/:userId', getUserPoints);
+
+// Route to get user points (GET request)
+router.get('/user/:userId', getUserPoints); // Ensure this route matches your frontend call
 
 module.exports = router;

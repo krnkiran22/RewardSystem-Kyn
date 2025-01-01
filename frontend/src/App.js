@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Dashboard from './components/Dashboard'; 
 import RedemptionPage from './pages/RedemptionPage';
 import GetAllEvents from './pages/GetAllEvents';
+import AdminPanel from './pages/AdminPanel';
 
 const App = () => (
     <Router>
@@ -25,7 +26,7 @@ const App = () => (
         <Route path="/eventcreation" element={<EventCreation />} />
         <Route path="/getallevents" element={<GetAllEvents />} />
         <Route path="/reedem" element={<RedemptionPage />} />
-        
+        <Route path='/attendence' element = {<AdminPanel/>}/>
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>

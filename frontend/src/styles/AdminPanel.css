@@ -1,0 +1,82 @@
+.admin-panel-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .admin-panel-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .admin-panel-header h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .event-selection {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .event-selection label {
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  .event-selection input {
+    padding: 8px;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  .event-selection button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .event-selection button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .attendees-list {
+    margin-top: 20px;
+  }
+  
+  .attendees-list h2 {
+    font-size: 1.5rem;
+  }
+  
+  .attendees-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .attendees-list li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .attendees-list li button {
+    padding: 5px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .attendees-list li button:hover {
+    background-color: #218838;
+  }
+  

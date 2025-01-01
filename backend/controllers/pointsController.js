@@ -1,5 +1,6 @@
 const Points = require('../models/Points');
 const Event = require('../models/Event');
+const mongoose = require('mongoose');
 
 const calculatePoints = (ticketPrice, percentage) => Math.round((ticketPrice * percentage) / 100);
 
@@ -8,6 +9,10 @@ const generatePoints = async (req, res) => {
     const { userId, eventId, action } = req.body;
     let points = 0;
     let event = null;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'Invalid user ID format' });
+    }
 
     if (eventId) {
       event = await Event.findById(eventId);
@@ -57,6 +62,11 @@ const generatePoints = async (req, res) => {
 const getUserPoints = async (req, res) => {
   try {
     const { userId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'Invalid user ID format' });
+    }
+
     const userPoints = await Points.find({ userId }).sort({ date: -1 });
 
     if (!userPoints || userPoints.length === 0) {

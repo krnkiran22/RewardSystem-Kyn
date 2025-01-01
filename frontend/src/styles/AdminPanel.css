@@ -1,82 +1,117 @@
-.admin-panel-container {
+/* General Styles */
+body {
     font-family: 'Arial', sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .admin-panel-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .admin-panel-header h1 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .event-selection {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .event-selection label {
-    font-size: 1.2rem;
-    margin-right: 10px;
-  }
-  
-  .event-selection input {
-    padding: 8px;
-    font-size: 1rem;
-    width: 200px;
-    margin-right: 10px;
-  }
-  
-  .event-selection button {
-    padding: 10px 15px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .event-selection button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  .attendees-list {
-    margin-top: 20px;
-  }
-  
-  .attendees-list h2 {
-    font-size: 1.5rem;
-  }
-  
-  .attendees-list ul {
-    list-style-type: none;
+    background-color: #f4f7fc;
+    margin: 0;
     padding: 0;
   }
   
-  .attendees-list li {
-    margin: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .admin-panel-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .attendees-list li button {
-    padding: 5px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
+  .admin-panel-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Event Selection */
+  .event-selection {
+    margin-bottom: 20px;
+  }
+  
+  .event-label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .event-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    transition: border 0.3s ease;
   }
   
-  .attendees-list li button:hover {
-    background-color: #218838;
+  .event-dropdown:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Event Bookings Card */
+  .event-booking-card {
+    margin-top: 40px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-booking-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .booking-list {
+    margin-top: 20px;
+  }
+  
+  .booking-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .booking-user,
+  .booking-tickets {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .presence-actions {
+    margin-top: 10px;
+  }
+  
+  .presence-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .present-button {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .present-button:hover {
+    background-color: #45a049;
+  }
+  
+  .absent-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .absent-button:hover {
+    background-color: #e53935;
   }
   

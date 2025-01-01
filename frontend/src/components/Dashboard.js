@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Dashboard.css";
@@ -6,39 +5,32 @@ import "../styles/Dashboard.css";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(""); // For displaying error messages
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Function to fetch the user profile
   const fetchUserProfile = async (userId, token) => {
     try {
-      console.log("Fetching profile with UserID:", userId, "Token:", token);
-  
-      const response = await fetch(`http://localhost:5000/api/users/profile/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`, 
-        },
-      });
-  
-      if (!response.ok) {
-        console.error("Response Status:", response.status);
-        throw new Error("Failed to fetch user profile");
-      }
-  
+      const response = await fetch(
+        `http://localhost:5000/api/users/profile/${userId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch user profile");
+
       const userData = await response.json();
-      return userData; 
+      return userData;
     } catch (error) {
       console.error("Error fetching user profile:", error);
       throw error;
     }
   };
-  
 
-  // UseEffect to load user data on component mount
   useEffect(() => {
     const loadUserData = async () => {
-      const token = localStorage.getItem("token"); // Get token from localStorage
-      const userId = localStorage.getItem("userId"); // Get userId from localStorage
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
 
       if (!token || !userId) {
         navigate("/login");
@@ -47,13 +39,13 @@ const Dashboard = () => {
 
       try {
         const userData = await fetchUserProfile(userId, token);
-        setUser(userData); // Set the user data
+        setUser(userData);
       } catch {
         setError("Unable to load user data. Please login again.");
-        localStorage.clear(); // Clear localStorage on error
-        navigate("/login"); // Redirect to login page
+        localStorage.clear();
+        navigate("/login");
       } finally {
-        setLoading(false); // Stop the loading spinner
+        setLoading(false);
       }
     };
 
@@ -84,7 +76,12 @@ const Dashboard = () => {
       </nav>
       <div className="dashboard-content">
         <div className="user-card">
-          <h2>Welcome, {user.name}</h2>
+          <h2>
+            Welcome, {user.name}
+            <button className="fire-button">
+              Streak🔥 {user.streak || 0}
+            </button>
+          </h2>
           <p>Email: {user.email}</p>
           <p>Phone Number: {user.phoneNumber}</p>
         </div>

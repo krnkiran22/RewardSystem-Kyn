@@ -115,3 +115,113 @@
     text-align: center;
   }
   
+  .wallet-button {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+  }
+  
+  .wallet-button:hover {
+    background-color: #e68900;
+    transform: scale(1.05);
+  }
+  
+  .wallet-button:active {
+    transform: scale(0.95);
+  }
+  /* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup Tab */
+.popup-tab {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 30px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1100;
+}
+
+/* Popup Title */
+.popup-tab h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Popup Text */
+.popup-tab p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Popup Input */
+.popup-tab input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Popup Actions */
+.popup-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Convert Button */
+.convert-button {
+  background: #4caf50;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.convert-button:hover {
+  background: #45a049;
+}
+
+/* Close Button */
+.close-button {
+  background: #f44336;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.close-button:hover {
+  background: #e53935;
+}

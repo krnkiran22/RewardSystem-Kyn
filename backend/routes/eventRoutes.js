@@ -7,5 +7,7 @@ router.post('/create', createEvent);
 router.get('/get', getAllEvents);
 router.post('/:eventId/book', bookTicket);
 router.patch('/:eventId/confirm-presence', confirmPresence);
+router.get('/:eventId/getBookings', getEventBookings);  // Added route for fetching bookings
+
 
 module.exports = router;
